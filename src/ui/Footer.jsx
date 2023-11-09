@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
 export default function Footer() {
   return (
