@@ -9,7 +9,7 @@ function HeroSection() {
         <img
           src="images/hero-image.jpg"
           alt="hero banner"
-          className="z-1 h-[700px]  w-full"
+          className="z-1 h-[700px] w-full  object-cover "
         />
 
         <div className="z-2 absolute inset-0 flex flex-col items-start justify-start gap-1 px-12 pt-4 text-[#f4f4f4]">
@@ -30,7 +30,7 @@ function HeroSection() {
             around you.
           </p>
 
-          <button className="bg-secondary rounded-md px-4 py-2">
+          <button className="rounded-md bg-secondary px-4 py-2">
             Get Started <LuMoveUpRight className="inline-block" />
           </button>
         </div>
