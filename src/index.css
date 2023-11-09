@@ -3,9 +3,51 @@
 @tailwind utilities;
 
 @layer components {
+  :root {
+    --jungle-green: #0e211e;
+    --hunter-green: #3c5b47;
+    --indigo-dye: #224f6e;
+    --primary-blue: #22506ec4;
+    --jazzberry-jam: #af075c;
+    --primary-color: #dfbfbf;
+    --primary-pink: #9d3199d0;
+    --secondary-font: "Poppins", sans-serif;
+    --tertiary-green: #3c5b47d6;
+  }
+
   * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+  }
+  .neon {
+    animation: flicker 1.5s infinite alternate;
+    color: rgb(255, 255, 255);
+  }
+  /* flickering animation */
+  @keyframes flicker {
+    0%,
+    18%,
+    22%,
+    25%,
+    53%,
+    57%,
+    100% {
+      text-shadow:
+        0 0 4px rgb(170, 170, 170),
+        0 0 11px rgb(170, 170, 170),
+        0 0 19px rgb(170, 170, 170),
+        0 0 40px var(--jazzberry-jam),
+        0 0 80px var(--jazzberry-jam),
+        0 0 90px var(--jazzberry-jam),
+        0 0 100px #c04a85,
+        0 0 150px #c04a85;
+    }
+
+    20%,
+    24%,
+    55% {
+      text-shadow: none;
+    }
   }
 }

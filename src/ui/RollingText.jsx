@@ -1,15 +1,9 @@
-const RollingText = () => {
-  const texts = ["Text 1", "Text 2", "Text 3"];
-
+function RollingText() {
   return (
-    <div className="w-full overflow-hidden">
-      <span className=" animate-roll inline-block">
-        {texts.map((text, index) => (
-          <span key={index}>{text}</span>
-        ))}
-      </span>
+    <div className="mt-20">
+      <h2 className="neon text-center text-5xl font-bold">TRENDING EVENTS</h2>
     </div>
   );
-};
+}
 
 export default RollingText;

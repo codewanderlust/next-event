@@ -25,12 +25,15 @@ function EventCard() {
     },
   ];
   return (
-    <>
-      <div className="mt-20  flex justify-center gap-4 px-4 py-3 ">
+    <div className="mt-20 ">
+      <h2 className="neon mb-2 text-center text-5xl font-bold">
+        TRENDING EVENTS
+      </h2>
+      <div className=" flex justify-center gap-4 px-4 py-3 ">
         {eventList.map((event, i) => (
           <div
             key={i}
-            className="flex h-[auto] max-w-[400px] flex-col  rounded-md border-2 border-stone-500"
+            className="flex h-[auto] max-w-[400px] flex-col  rounded-md border border-stone-600"
           >
             <img src={event.image} alt={event.title} className="h-64 w-full " />
             <div className="flex items-center gap-2 p-2">
@@ -47,7 +50,7 @@ function EventCard() {
           </div>
         ))}
       </div>
-    </>
+    </div>
   );
 }
 

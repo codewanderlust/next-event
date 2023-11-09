@@ -6,15 +6,14 @@ import Footer from "../ui/Footer";
 import Gallery from "../ui/Gallery";
 import Header from "../ui/Header";
 import HeroSection from "../ui/HeroSection";
-// import RollingText from "../ui/RollingText";
 
 function HomePage() {
   return (
     <>
       <Header />
       <HeroSection />
+
       <div className="mx-auto max-w-7xl">
-        {/* <RollingText /> */}
         <EventCard />
         <EventTypeCards />
       </div>
