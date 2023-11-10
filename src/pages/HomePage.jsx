@@ -5,6 +5,7 @@ import EventTypeCards from "../ui/EventTypeCards";
 import Footer from "../ui/Footer";
 import Gallery from "../ui/Gallery";
 import Header from "../ui/Header";
+
 import HeroSection from "../ui/HeroSection";
 
 function HomePage() {

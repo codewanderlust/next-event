@@ -1,18 +1,25 @@
-import { HiMagnifyingGlass, HiOutlineHeart } from "react-icons/hi2";
-function HeaderMenu() {
+function HeaderLinks() {
+  const links = [
+    { href: "/", label: "How it Works" },
+    { href: "/", label: "Music" },
+    { href: "/", label: "Tech" },
+    { href: "/", label: "Nightlife" },
+  ];
+
   return (
-    <div className="flex items-center gap-2">
-      <div className="bg-secondary cursor-pointer rounded-3xl p-2">
-        <HiMagnifyingGlass size={18} color="#f4f4f4" />
+    <ul className="flex items-center gap-[32px] text-lg tracking-wide">
+      {links.map((link, i) => (
+        <li key={i}>
+          <p className="font-semibold capitalize text-[#f4f4f4]">
+            {link.label}
+          </p>
+        </li>
+      ))}
+      <div className="cursor-pointer rounded-2xl bg-secondary px-4 py-2  text-xl font-semibold text-[#f4f4f4]">
+        <button>Get Started</button>
       </div>
-      <div className="bg-secondary cursor-pointer rounded-3xl p-2">
-        <HiOutlineHeart size={18} color="#f4f4f4" />
-      </div>
-      <div className="bg-secondary cursor-pointer rounded-2xl px-4 py-2 text-xs text-[#f4f4f4]">
-        <button>Sign up</button>
-      </div>
-    </div>
+    </ul>
   );
 }
 
-export default HeaderMenu;
+export default HeaderLinks;

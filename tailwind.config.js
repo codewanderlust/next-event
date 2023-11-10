@@ -9,6 +9,9 @@ module.exports = {
       animation: {
         roll: "roll 5s infinite linear",
       },
+      backgroundColor: {
+        "primary-rgba": "rgba(60, 60, 60, 0.75)",
+      },
       colors: {
         primary: "#F21565",
         secondary: "#7908AE",
