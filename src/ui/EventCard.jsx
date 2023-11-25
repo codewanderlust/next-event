@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { FaLocationDot } from "react-icons/fa6";
-import { getEvents } from "../services/apiEvents";
+import { getTrendingEvents } from "../services/apiEvents";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer"; // Import useInView
@@ -12,7 +12,7 @@ function EventCard() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const eventsData = await getEvents(apiKey, genre);
+      const eventsData = await getTrendingEvents(apiKey, genre);
       setEvents(eventsData.slice(0, 3));
     };
 
