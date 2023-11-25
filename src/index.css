@@ -50,4 +50,139 @@
       text-shadow: none;
     }
   }
+  .preloader {
+    position: fixed;
+    text-align: center;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 20px;
+    z-index: 9999999;
+    background: #ffffff;
+    transition: 0.3s all ease;
+  }
+
+  .preloader.loaded {
+    opacity: 0;
+    visibility: hidden;
+    z-index: -1;
+  }
+
+  .preloader.loaded .cssload-container {
+    animation: none;
+  }
+
+  .preloader.loaded .cssload-container span {
+    animation: none;
+  }
+
+  .preloader.ending {
+    display: none;
+  }
+
+  .preloader .preloader-body {
+    position: relative;
+    text-align: center;
+    height: 200px;
+  }
+
+  .preloader > div {
+    width: 100%;
+  }
+
+  [data-x-mode="design-mode"] .preloader {
+    opacity: 0;
+    visibility: hidden;
+    z-index: -1;
+  }
+
+  .cssload-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 80px;
+    height: 80px;
+    transform: translate(-50%, -50%) rotate(45deg) translate3d(0, 0, 0);
+    animation: loader 1.2s infinite ease-in-out;
+  }
+
+  .cssload-container span {
+    position: absolute;
+    display: block;
+    width: 40px;
+    height: 40px;
+    background-color: #3c6a36;
+    animation: loaderBlock 1.2s infinite ease-in-out both;
+  }
+
+  .cssload-container span:nth-child(1) {
+    top: 0;
+    left: 0;
+  }
+
+  .cssload-container span:nth-child(2) {
+    top: 0;
+    right: 0;
+    animation: loaderBlockInverse 1.2s infinite ease-in-out both;
+  }
+
+  .cssload-container span:nth-child(3) {
+    bottom: 0;
+    left: 0;
+    animation: loaderBlockInverse 1.2s infinite ease-in-out both;
+  }
+
+  .cssload-container span:nth-child(4) {
+    bottom: 0;
+    right: 0;
+  }
+
+  @keyframes loader {
+    0%,
+    10%,
+    100% {
+      width: 86px;
+      height: 86px;
+    }
+
+    65% {
+      width: 150px;
+      height: 150px;
+    }
+  }
+
+  @keyframes loaderBlock {
+    0%,
+    30% {
+      transform: rotate(0);
+    }
+
+    55% {
+      background-color: #eda407;
+    }
+
+    100% {
+      transform: rotate(90deg);
+    }
+  }
+
+  @keyframes loaderBlockInverse {
+    0%,
+    20% {
+      transform: rotate(0);
+    }
+
+    55% {
+      background-color: #eda407;
+    }
+
+    100% {
+      transform: rotate(-90deg);
+    }
+  }
 }

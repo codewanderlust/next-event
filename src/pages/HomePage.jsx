@@ -1,29 +1,33 @@
+import { useEffect } from "react";
 import AppFeatures from "../ui/AppFeatures";
 import AppInfo from "../ui/AppInfo";
 import EventCard from "../ui/EventCard";
 import EventTypeCards from "../ui/EventTypeCards";
-import Footer from "../ui/Footer";
+
 import Gallery from "../ui/Gallery";
-import Header from "../ui/Header";
 
 import HeroSection from "../ui/HeroSection";
+import { useState } from "react";
+import Loader from "../ui/LoadingScreen";
 
 function HomePage() {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => setLoading(false), 3000);
+  }, []);
   return (
     <>
-      <Header />
+      {loading && <Loader />}
       <HeroSection />
 
-      <div className="mx-auto max-w-7xl">
-        <EventCard />
-        <EventTypeCards />
-      </div>
+      <EventCard />
+      <EventTypeCards />
       <AppInfo />
-      <div className="mx-auto max-w-7xl">
+      <div className="mx-auto max-w-7xl p-6">
         <AppFeatures />
         <Gallery />
       </div>
-      <Footer />
     </>
   );
 }
