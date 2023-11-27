@@ -26,6 +26,7 @@ function HeroSection() {
 
   useEffect(() => {
     handleGetLocation();
+    //eslint-disable-next-line
   }, [lat, lng]);
   return (
     <div className="relative cursor-pointer sm:mx-auto" id="hero-section">

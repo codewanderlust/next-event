@@ -34,7 +34,12 @@ function EventCard() {
               to={`/concerts/${event.id}`}
             >
               {i === 1 && (
-                <Tooltip label="Trending Worldwide 🌍" aria-label="A tooltip">
+                <Tooltip
+                  label="Trending Worldwide 🌍"
+                  aria-label="A tooltip"
+                  hasArrow
+                  arrowSize={15}
+                >
                   <img
                     src="https://fgfppclstifnqgadpqux.supabase.co/storage/v1/object/public/next-event-images/hot2x.gif"
                     alt="Trending"
