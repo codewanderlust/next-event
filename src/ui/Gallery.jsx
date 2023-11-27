@@ -21,13 +21,13 @@ function Gallery() {
       onViewportEnter={() => setIsInView(true)}
     >
       <img
-        src="images/gallery-image-01.jpg"
+        src="https://fgfppclstifnqgadpqux.supabase.co/storage/v1/object/public/next-event-images/gallery-image-01.jpg?t=2023-11-27T10%3A30%3A41.988Z"
         alt="people seated in a concert"
         className="h-[400px] w-full rounded-bl-2xl rounded-tl-[100px] object-cover"
         onLoad={() => setIsLoaded(true)}
       />
       <img
-        src="images/gallery-image-02.jpg"
+        src="https://fgfppclstifnqgadpqux.supabase.co/storage/v1/object/public/next-event-images/gallery-image-02.jpg"
         alt="people seated in a concert"
         className="h-[400px] w-full rounded-br-[100px] rounded-tr-2xl object-cover"
         onLoad={() => setIsLoaded(true)}

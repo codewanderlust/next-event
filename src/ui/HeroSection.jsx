@@ -34,7 +34,7 @@ function HeroSection() {
         <div className="absolute inset-0 z-0 bg-black opacity-40"></div>
 
         <img
-          src="images/hero-image.jpg"
+          src="https://fgfppclstifnqgadpqux.supabase.co/storage/v1/object/public/next-event-images/hero-image.jpg"
           alt="hero banner"
           className="z-1 h-[700px] w-full  object-cover "
         />
@@ -59,7 +59,7 @@ function HeroSection() {
 
           {!geolocationPosition && (
             <button
-              className="rounded-md bg-secondary px-4 py-2 text-xl font-semibold tracking-wide"
+              className="flex items-center gap-2 rounded-md bg-secondary px-4 py-2 text-xl font-semibold tracking-wide"
               onClick={() => {
                 getPosition();
                 handleGetLocation();

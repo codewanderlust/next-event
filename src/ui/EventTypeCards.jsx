@@ -7,7 +7,7 @@ function EventTypeCards() {
         <div className="relative">
           <Link to="/concerts" className="oveflow-hidden block">
             <img
-              src="images/concerts.jpg"
+              src="https://fgfppclstifnqgadpqux.supabase.co/storage/v1/object/public/next-event-images/concerts.jpg"
               alt="hero banner"
               className="transform transition-transform hover:scale-110"
             />
@@ -26,7 +26,7 @@ function EventTypeCards() {
 
           <Link to="/concerts">
             <img
-              src="images/color-runs.jpg"
+              src="https://fgfppclstifnqgadpqux.supabase.co/storage/v1/object/public/next-event-images/color-runs.jpg"
               alt="hero banner"
               className="transform transition-transform hover:scale-110"
             />
@@ -45,7 +45,7 @@ function EventTypeCards() {
 
           <Link to="/concerts">
             <img
-              src="images/libraries.jpg"
+              src="https://fgfppclstifnqgadpqux.supabase.co/storage/v1/object/public/next-event-images/libraries.jpg"
               alt="hero banner"
               className="transform transition-transform hover:scale-110"
             />
@@ -64,7 +64,7 @@ function EventTypeCards() {
 
           <Link to="/concerts">
             <img
-              src="images/food-festivals.jpg"
+              src="https://fgfppclstifnqgadpqux.supabase.co/storage/v1/object/public/next-event-images/food-festivals.jpg"
               alt="hero banner"
               className="transform transition-transform hover:scale-110"
             />
@@ -83,7 +83,7 @@ function EventTypeCards() {
 
           <Link to="/concerts">
             <img
-              src="images/hiking.jpg"
+              src="https://fgfppclstifnqgadpqux.supabase.co/storage/v1/object/public/next-event-images/hiking.jpg?t=2023-11-27T10%3A28%3A11.250Z"
               alt="hero banner"
               className="transform transition-transform hover:scale-110"
             />
@@ -102,7 +102,7 @@ function EventTypeCards() {
 
           <Link to="/concerts">
             <img
-              src="images/sports.jpg"
+              src="https://fgfppclstifnqgadpqux.supabase.co/storage/v1/object/public/next-event-images/event-02.png"
               alt="hero banner"
               className="transform transition-transform hover:scale-110"
             />

@@ -1,4 +1,6 @@
 import { Route, Routes, BrowserRouter } from "react-router-dom";
+import { ChakraProvider } from "@chakra-ui/react";
+
 import HomePage from "./pages/HomePage";
 import AppLayout from "./ui/AppLayout";
 import "react-toastify/dist/ReactToastify.css";
@@ -19,28 +21,30 @@ const queryClient = new QueryClient({
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
-        <ToastContainer
-          position="top-center"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="light"
-        />
-        <Routes>
-          <Route element={<AppLayout />}>
-            <Route index element={<HomePage />} />
-            <Route path="/concerts" element={<EventList />} />
-            <Route path="/concerts/:id" element={<EventDetails />} />
-            <Route path="*" element={<PageNotFound />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
+      <ChakraProvider>
+        <BrowserRouter>
+          <ToastContainer
+            position="top-center"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+          />
+          <Routes>
+            <Route element={<AppLayout />}>
+              <Route index element={<HomePage />} />
+              <Route path="/concerts" element={<EventList />} />
+              <Route path="/concerts/:id" element={<EventDetails />} />
+              <Route path="*" element={<PageNotFound />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </ChakraProvider>
     </QueryClientProvider>
   );
 }

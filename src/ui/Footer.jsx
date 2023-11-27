@@ -9,7 +9,7 @@ export default function Footer() {
       <div className="min-w-6xl mx-auto flex max-w-6xl flex-col  p-4 sm:flex-row  sm:justify-between sm:px-4 sm:py-10">
         <ul className="mb-8 w-full sm:mb-0 sm:w-1/3">
           <img
-            src="images/footer-logo.png"
+            src="https://fgfppclstifnqgadpqux.supabase.co/storage/v1/object/public/next-event-images/footer-logo.png?t=2023-11-27T10%3A21%3A08.855Z"
             alt="logo"
             className="h-[96px] w-[96px]"
           />

@@ -6,7 +6,7 @@ const getNearbyEvents = async (apiKey, genre, latlong) => {
     const data = await response.json();
     return data._embedded?.events || [];
   } catch (error) {
-    console.error("Error fetching events:", error);
+    console.error("Error fetching nearby events:", error);
     return [];
   }
 };

@@ -23,7 +23,7 @@ function AppInfo() {
         {/* Image container */}
         <div className=" z-1 relative w-2/3 flex-shrink-0">
           <img
-            src="images/club-image.jpeg"
+            src="https://fgfppclstifnqgadpqux.supabase.co/storage/v1/object/public/next-event-images/club-image.jpeg?t=2023-11-27T10%3A29%3A23.770Z"
             alt="club banner"
             className="h-[90%] w-full rounded-bl-[240px] rounded-br-[240px]"
           />
