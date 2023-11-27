@@ -65,8 +65,13 @@ function HeroSection() {
                 handleGetLocation();
               }}
             >
-              {isLoadingPosition ? "Loading..." : "Get Started"}
-              <LuMoveUpRight className="inline-block" />
+              {isLoadingPosition ? (
+                "Loading..."
+              ) : (
+                <>
+                  Get Started <LuMoveUpRight className="inline-block" />
+                </>
+              )}
             </button>
           )}
         </div>

@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Tooltip } from "@chakra-ui/react";
 import { FaLocationDot } from "react-icons/fa6";
 import { getTrendingEvents } from "../services/apiEvents";
 import { Link } from "react-router-dom";
@@ -33,11 +34,13 @@ function EventCard() {
               to={`/concerts/${event.id}`}
             >
               {i === 1 && (
-                <img
-                  src="https://fgfppclstifnqgadpqux.supabase.co/storage/v1/object/public/next-event-images/hot2x.gif"
-                  alt="Trending"
-                  className="absolute right-0 top-0 h-auto w-8 pt-1"
-                />
+                <Tooltip label="Trending Worldwide 🌍" aria-label="A tooltip">
+                  <img
+                    src="https://fgfppclstifnqgadpqux.supabase.co/storage/v1/object/public/next-event-images/hot2x.gif"
+                    alt="Trending"
+                    className="absolute right-0 top-0 h-auto w-8 pt-1"
+                  />
+                </Tooltip>
               )}
               <img
                 src={event.images[2].url}

@@ -76,7 +76,9 @@ export default function EventDetails() {
               <div className="flex  gap-4">
                 <HiOutlineLocationMarker size={32} />
                 <div className="self-start">
-                  <p className="text-[24px] font-semibold">{venueName}</p>
+                  <p className="text-[24px] font-medium">
+                    {venueName ? venueName : "Venue info not available"}
+                  </p>
                   <p>{addressLine1}</p>
                   <p>{cityName}</p>
                 </div>
@@ -92,7 +94,7 @@ export default function EventDetails() {
               </div>
               <div className="ml-12 flex cursor-pointer items-center gap-2  rounded-2xl bg-white px-2 py-1 text-[#000]">
                 <MdOutlineNotificationsNone size={32} />
-                <p>Get notified</p>
+                <p>Get Reminder</p>
               </div>
             </div>
             <img
