@@ -40,6 +40,7 @@ const Modal = ({ handleClose, type }) => {
   async function handleSignIn() {
     try {
       setIsSendingMagicLink(true); // Set loading state to true
+      //eslint-disable-next-line
       const { data, error } = await supabase.auth.signInWithOtp({
         email: email,
         options: {

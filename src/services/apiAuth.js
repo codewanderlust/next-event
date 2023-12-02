@@ -1,4 +1,3 @@
-import { useUser } from "../features/aunthentication/useUser";
 import supabase from "./supabase";
 
 async function loginWithGoogle() {
