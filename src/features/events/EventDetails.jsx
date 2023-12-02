@@ -1,17 +1,23 @@
-import React from "react";
 import { useEffect } from "react";
 import { useParams } from "react-router";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { toast } from "react-toastify";
+
 import { getEventDetails } from "../../services/apiEvents";
 import { useState } from "react";
 import { HiOutlineLocationMarker } from "react-icons/hi";
 import { BiRadio } from "react-icons/bi";
 import { formatDate } from "../../utils/helpers";
-import { MdOutlineNotificationsNone } from "react-icons/md";
+import { MdOutlineNotificationsNone, MdFavoriteBorder } from "react-icons/md";
+import { createFavorite } from "../../services/apiFavorites";
+import { useUser } from "../aunthentication/useUser";
 
 export default function EventDetails() {
   const [eventDetails, setEventDetails] = useState({});
   const apiKey = "L9HuAjIoaLApydg4RShNzSl4kSv6mynE";
   const { id } = useParams();
+  const { user } = useUser();
+  const user_id = user?.id;
 
   useEffect(() => {
     const fetchEventDetails = async () => {
@@ -60,8 +66,36 @@ export default function EventDetails() {
     bottom: 0,
     backdropFilter: "blur(10px)", // Adjust the blur intensity as needed
   };
+  const queryClient = useQueryClient();
+  const { mutate } = useMutation({
+    mutationFn: createFavorite,
+    onSuccess: () => {
+      toast.success("Item added to favourites 😍", { autoClose: 2000 });
+      queryClient.invalidateQueries("favorites");
+    },
+    onError: (err) => {
+      console.log("Error object:", err); // Add this line
+      if (err?.message === "DuplicateKeyError") {
+        toast.error("Item is already a favorite 😀", { autoClose: 2000 });
+      } else {
+        toast.error("Something went wrong 😥", { autoClose: 2000 });
+      }
+    },
+  });
+  function handleAddToFavorites(eventDetails) {
+    const favoriteItem = {
+      user_id,
+      ticketing: eventDetails.url,
+      favoriteId: eventDetails.id,
+      eventName: eventDetails.name,
+      image: eventDetails.images?.[0]?.url,
+      date: eventDetails.dates?.start?.localDate,
+    };
+    mutate(favoriteItem);
+  }
 
   console.log({ eventDetails });
+
   return (
     <div className=" mx-auto max-w-[1003px] p-6">
       <div style={backgroundStyle} className=" relative z-0 min-h-[390px] ">
@@ -95,6 +129,13 @@ export default function EventDetails() {
               <div className="ml-12 flex cursor-pointer items-center gap-2  rounded-2xl bg-white px-2 py-1 text-[#000]">
                 <MdOutlineNotificationsNone size={32} />
                 <p>Get Reminder</p>
+              </div>
+              <div className="ml-12 flex cursor-pointer items-center gap-2  rounded-2xl bg-white px-2 py-1 text-[#000]">
+                <MdFavoriteBorder
+                  size={32}
+                  onClick={(e) => handleAddToFavorites(eventDetails)}
+                />
+                <p>Add to Favorites</p>
               </div>
             </div>
             <img

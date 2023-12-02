@@ -24,10 +24,10 @@ const getEventDetails = async (apiKey, eventId) => {
   }
 };
 
-const getTrendingEvents = async (apiKey, genre) => {
+const getTrendingEvents = async (apiKey, query) => {
   try {
     const response = await fetch(
-      `https://app.ticketmaster.com/discovery/v2/events.json?apikey=${apiKey}&keyword=${genre}`,
+      `https://app.ticketmaster.com/discovery/v2/events.json?apikey=${apiKey}&keyword=${query}`,
     );
     const data = await response.json();
     return data._embedded?.events || [];

@@ -10,6 +10,9 @@ import EventList from "./features/events/EventList";
 import EventDetails from "./features/events/EventDetails";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ToastContainer } from "react-toastify";
+import UserProfile from "./pages/UserProfile";
+import Favorites from "./features/favorites/Favorites";
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -35,11 +38,14 @@ function App() {
             pauseOnHover
             theme="light"
           />
+
           <Routes>
             <Route element={<AppLayout />}>
+              <Route path="/favorites" element={<Favorites />} />
+              <Route path="/dashboard" element={<UserProfile />} />
               <Route index element={<HomePage />} />
-              <Route path="/concerts" element={<EventList />} />
-              <Route path="/concerts/:id" element={<EventDetails />} />
+              <Route path="/events" element={<EventList />} />
+              <Route path="/event/:id" element={<EventDetails />} />
               <Route path="*" element={<PageNotFound />} />
             </Route>
           </Routes>

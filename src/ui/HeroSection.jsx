@@ -1,4 +1,5 @@
 import { LuMoveUpRight } from "react-icons/lu";
+import { motion as m } from "framer-motion";
 import { useGeolocation } from "../hooks/useGeolocation";
 import { useNavigate } from "react-router";
 import { useEffect } from "react";
@@ -12,12 +13,11 @@ function HeroSection() {
   } = useGeolocation();
 
   const { lat, lng } = geolocationPosition || {};
-  console.log({ lat, lng });
+
   const handleGetLocation = () => {
-    console.log("Button clicked");
     if (lat !== undefined && lng !== undefined) {
       // Redirect to the concerts page with lat and lng as query parameters
-      navigate(`/concerts?lat=${lat}&lng=${lng}`);
+      navigate(`/events?lat=${lat}&lng=${lng}`);
     } else {
       console.error("Latitude and/or longitude is undefined.");
       // Handle the error or provide user feedback
@@ -44,22 +44,37 @@ function HeroSection() {
           {/* Top bar */}
           <div className="h-10 w-1/2 bg-white"></div>
 
-          <h1 className="text-[180px] font-medium uppercase tracking-wide">
+          <m.h1
+            animate={{ y: 0, opacity: 1 }}
+            initial={{ y: "100%", opacity: 0 }}
+            transition={{ delay: 0.5, duration: 0.5 }}
+            className="text-9xl font-medium uppercase tracking-wide"
+          >
             Feed the soul
-          </h1>
+          </m.h1>
 
           {/* Bottom bar */}
           <div className="h-10 w-1/2 self-end bg-white"></div>
         </div>
 
         <div className="z-2 absolute bottom-20 left-0 right-0 top-0  flex flex-col items-start justify-end gap-6  px-12 text-[#f4f4f4]">
-          <p className="text-xl font-semibold text-white sm:text-4xl">
+          <m.p
+            initial={{ x: "25%", opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ delay: 0.5, duration: 0.5 }}
+            className="text-xl font-semibold text-white  sm:text-4xl"
+          >
             Discover amazing events <br />
             around you.
-          </p>
+          </m.p>
 
           {!geolocationPosition && (
-            <button
+            <m.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              initial={{ y: "100%", opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.5 }}
               className="flex items-center gap-2 rounded-md bg-secondary px-4 py-2 text-xl font-semibold tracking-wide"
               onClick={() => {
                 getPosition();
@@ -73,7 +88,7 @@ function HeroSection() {
                   Get Started <LuMoveUpRight className="inline-block" />
                 </>
               )}
-            </button>
+            </m.button>
           )}
         </div>
       </div>

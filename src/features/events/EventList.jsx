@@ -2,15 +2,16 @@ import { Skeleton, SimpleGrid, Box } from "@chakra-ui/react";
 import { IoLocationOutline } from "react-icons/io5";
 
 import { getNearbyEvents } from "../../services/apiEvents";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router";
 import { useEffect, useState } from "react";
 import { useUrlPosition } from "../../hooks/useUrlPosition";
 import { formatDate } from "../../utils/helpers";
 
 const EventList = () => {
   const apiKey = "L9HuAjIoaLApydg4RShNzSl4kSv6mynE";
-  const genre = "pop"; // Replace with the user's preferred genre
+  const genre = "dancehall"; // Replace with the user's preferred genre
 
+  const navigate = useNavigate();
   //get the lat and lng from the url
   const [mapLat, mapLng] = useUrlPosition();
 
@@ -28,7 +29,7 @@ const EventList = () => {
             genre,
             `${mapLat},${mapLng}`,
           );
-          setEvents(nearbyEventsData.slice(0, 8));
+          setEvents(nearbyEventsData.slice(0, 9));
           setLoading(false); // Set loading to false after fetching data
         }, 3000); // Simulate a 3-second delay
       } catch (error) {
@@ -40,6 +41,14 @@ const EventList = () => {
 
     fetchEvents();
   }, [genre, apiKey, mapLat, mapLng]);
+  console.log({ events });
+
+  function handleEventDetails(eventId) {
+    navigate(`/event/${eventId}`);
+  }
+  function handleTicketPurchase(ticketUrl) {
+    window.open(ticketUrl, "_blank"); // Open the ticket URL in a new tab
+  }
 
   return (
     <Box className="mx-auto max-w-7xl p-6">
@@ -47,17 +56,15 @@ const EventList = () => {
         Live Events
       </h1>
 
-      <div className="mb-2 flex gap-1 sm:mb-4 md:mb-6 ">
+      <div className="mb-2 inline-block cursor-pointer space-x-2 rounded-3xl border border-slate-200 px-4 py-2 sm:mb-4 md:mb-6">
         <IoLocationOutline className="  inline-block text-[20px] " />
 
-        <p className="inline-block">
-          {events[0]?._embedded?.venues[0]?.city?.name}
-        </p>
+        <p className="inline ">{events[0]?._embedded?.venues[0]?.city?.name}</p>
       </div>
 
       {loading ? (
-        <SimpleGrid columns={{ sm: 2, md: 4 }} gap={6}>
-          {[...Array(8)].map((_, n) => (
+        <SimpleGrid columns={{ sm: 2, md: 3 }} gap={6}>
+          {[...Array(9)].map((_, n) => (
             <Box key={n}>
               <Skeleton
                 height="200px"
@@ -82,26 +89,47 @@ const EventList = () => {
           ))}
         </SimpleGrid>
       ) : (
-        <SimpleGrid columns={{ sm: 2, md: 4 }} gap={6}>
+        <div className="grid grid-cols-2 gap-2 sm:grid-cols-2 md:grid-cols-3 md:gap-4">
           {events.map((event) => (
-            <Link
+            <div
               key={event.id}
-              className="flex cursor-pointer flex-col"
+              className="flex h-[400px] w-[350px] flex-col gap-2"
               to={`/concerts/${event.id}`}
             >
-              <img
-                src={event.images[2].url}
-                alt={event.name}
-                className="h-auto w-full"
-              />
-              <div className="text-xs">
-                <p className="truncate font-semibold">{event.name}</p>
-                <p>{event._embedded?.venues[0]?.name}</p>
-                <p>{formatDate(event.dates?.start?.localDate)}</p>
+              <div className="h-[60%] overflow-hidden">
+                <img
+                  src={event.images[2].url}
+                  alt={event.name}
+                  className="h-full w-full object-cover"
+                />
               </div>
-            </Link>
+              <div className="flex h-[40%] flex-col justify-between">
+                <div className="space-y-4 text-center text-xs">
+                  <p className="truncate text-[20px] ">{event.name}</p>
+                  <p className="text-[16px]">
+                    {event._embedded?.venues[0]?.city?.name || "N/A"} ┃{" "}
+                    {formatDate(event.dates?.start?.localDate)}
+                  </p>
+
+                  <div className="space-x-4 text-[16px] font-semibold ">
+                    <button
+                      onClick={() => handleEventDetails(event.id)}
+                      className="rounded-[50px] border-2 border-primary px-3 py-2 uppercase tracking-wide text-primary transition-all duration-200 hover:bg-pink-200 hover:text-primary active:bg-pink-200 active:text-primary"
+                    >
+                      Details
+                    </button>
+                    <button
+                      onClick={() => handleTicketPurchase(event.url)}
+                      className="rounded-[50px] bg-primary px-3 py-2 uppercase tracking-wide transition-all duration-200 hover:bg-pink-200 hover:text-primary active:bg-pink-200 "
+                    >
+                      Buy Tickets
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
           ))}
-        </SimpleGrid>
+        </div>
       )}
     </Box>
   );
