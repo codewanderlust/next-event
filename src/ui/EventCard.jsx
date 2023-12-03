@@ -56,7 +56,7 @@ function EventCard() {
             >
               <Link
                 className="relative flex h-[400px] w-[400px]  flex-col rounded-md border border-stone-800"
-                to={`/concerts/${event.id}`}
+                to={`/event/${event.id}`}
               >
                 {i === 1 && (
                   <Tooltip

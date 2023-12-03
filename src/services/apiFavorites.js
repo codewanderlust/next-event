@@ -12,7 +12,7 @@ export async function getFavorites(userId) {
     throw new Error("Favorites could not be loaded");
   }
 
-  console.log(data, "data from getFavorites");
+  console.error(data, "data from getFavorites");
   return data;
 }
 
@@ -21,7 +21,7 @@ export async function createFavorite(newFavorite) {
     .from("favorites")
     .insert([newFavorite]);
   if (error) {
-    console.log(error);
+    console.error(error);
 
     //here since and item is already in the database, we want to update it instead of creating a new one, we targeted the exact error message
     //and we are throwing a new error to be handled in the component

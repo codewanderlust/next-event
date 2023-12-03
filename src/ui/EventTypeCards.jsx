@@ -1,9 +1,16 @@
 import { Link } from "react-router-dom";
+import { motion as m, useAnimation } from "framer-motion";
 
 function EventTypeCards() {
+  const slideRight = useAnimation();
+
   return (
     <div className="event-cards mx-auto mt-4 flex max-w-7xl  flex-wrap p-6 sm:mt-8 md:mt-12 ">
-      <div className="card-one mb-4 w-full px-4 sm:w-1/2 md:w-1/3">
+      <m.div
+        initial={{ x: "100%", opacity: 0 }}
+        animate={slideRight}
+        className="card-one mb-4 w-full px-4 sm:w-1/2 md:w-1/3"
+      >
         <div className="relative">
           <Link to="/concerts" className="oveflow-hidden block">
             <img
@@ -18,7 +25,7 @@ function EventTypeCards() {
             </div>
           </Link>
         </div>
-      </div>
+      </m.div>
 
       <div className="card-two  mb-4 w-full px-4  sm:w-1/2 md:w-1/3">
         <div className="relative">

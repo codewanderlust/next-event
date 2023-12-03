@@ -5,7 +5,6 @@ async function loginWithGoogle() {
     provider: "google",
   });
   if (error) throw new Error(error.message);
-  console.log(data);
   return data;
 }
 
@@ -19,7 +18,7 @@ async function loginWithGithub() {
     provider: "github",
   });
   if (error) throw new Error(error.message);
-  console.log(data);
+
   return data;
 }
 

@@ -3,7 +3,7 @@ import Footer from "./Footer";
 import Header from "./Header";
 import Modal from "../components/Modal/index";
 import { useState } from "react";
-import useModal from "../hooks/useModal";
+import { useModal } from "../hooks/useModal";
 
 import { framerLogger } from "../utils/stateLogger";
 import { AnimatePresence } from "framer-motion";
@@ -15,6 +15,7 @@ function AppLayout() {
   return (
     <div className="grid min-h-screen  grid-rows-[auto_1fr_auto] bg-[#191414] text-[#fff]">
       <Header open={open} />
+
       <main>
         <Outlet />
       </main>

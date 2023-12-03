@@ -1,3 +1,4 @@
+import { motion as m, useIsPresent } from "framer-motion";
 import AppFeatures from "../ui/AppFeatures";
 import AppInfo from "../ui/AppInfo";
 import EventCard from "../ui/EventCard";
@@ -8,23 +9,28 @@ import Gallery from "../ui/Gallery";
 import HeroSection from "../ui/HeroSection";
 
 function HomePage() {
+  const isPresent = useIsPresent();
   return (
-    <div
-      animate={{ y: "0%" }}
-      exit={{ opacity: 1 }}
-      initial={{ y: "100%" }}
-      transition={{ duration: 0.75, ease: "easeOut" }}
-    >
-      <HeroSection />
+    <>
+      <div>
+        <HeroSection />
 
-      <EventCard />
-      <EventTypeCards />
-      <AppInfo />
-      <div className="mx-auto max-w-7xl p-6">
-        <AppFeatures />
-        <Gallery />
+        <EventCard />
+        <EventTypeCards />
+        <AppInfo />
+        <div className="mx-auto max-w-7xl p-6">
+          <AppFeatures />
+          <Gallery />
+        </div>
       </div>
-    </div>
+      <m.div
+        initial={{ scaleX: 1 }}
+        animate={{ scaleX: 0, transition: { duration: 1.25, ease: "circOut" } }}
+        exit={{ scaleX: 1, transition: { duration: 1.25, ease: "circIn" } }}
+        style={{ originX: isPresent ? 0 : 1 }}
+        className="fixed inset-0 z-[99999] bg-secondary "
+      />
+    </>
   );
 }
 

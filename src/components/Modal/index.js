@@ -109,7 +109,7 @@ const ModalText = ({
             type="email"
             autoComplete="email"
             required
-            className="input touched"
+            className={`input ${isEmailValid ? "valid-email" : "touched"}`}
             onChange={(e) => setEmail(e.target.value)}
             value={email}
           />

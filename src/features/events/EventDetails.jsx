@@ -1,21 +1,22 @@
 import { useEffect } from "react";
 import { useParams } from "react-router";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { toast } from "react-toastify";
+import { toast } from "react-hot-toast";
+import { useState } from "react";
 
 import { getEventDetails } from "../../services/apiEvents";
-import { useState } from "react";
-import { HiOutlineLocationMarker } from "react-icons/hi";
-import { BiRadio } from "react-icons/bi";
 import { formatDate } from "../../utils/helpers";
 import { MdOutlineNotificationsNone, MdFavoriteBorder } from "react-icons/md";
 import { createFavorite } from "../../services/apiFavorites";
 import { useUser } from "../aunthentication/useUser";
+import { useModal } from "../../hooks/useModal";
 
 export default function EventDetails() {
   const [eventDetails, setEventDetails] = useState({});
   const apiKey = "L9HuAjIoaLApydg4RShNzSl4kSv6mynE";
   const { id } = useParams();
+  const { open } = useModal();
+
   const { user } = useUser();
   const user_id = user?.id;
 
@@ -29,18 +30,16 @@ export default function EventDetails() {
   }, [id]);
 
   //below we added conditional checks to prevent errors when we are tying to access nested properties that don't exist
-  const backgroundImageUrl =
+  const eventImage =
     eventDetails.images && eventDetails.images[2] && eventDetails.images[2].url;
-  const venueName =
-    eventDetails._embedded &&
-    eventDetails._embedded.venues[0] &&
-    eventDetails._embedded.venues[0].name;
-  const addressLine1 =
+
+  const countryCode =
     eventDetails._embedded &&
     eventDetails._embedded.venues &&
     eventDetails._embedded.venues[0] &&
-    eventDetails._embedded.venues[0].address &&
-    eventDetails._embedded.venues[0].address.line1;
+    eventDetails._embedded.venues[0].country &&
+    eventDetails._embedded.venues[0].country.countryCode;
+
   const cityName =
     eventDetails._embedded &&
     eventDetails._embedded.venues &&
@@ -48,24 +47,12 @@ export default function EventDetails() {
     eventDetails._embedded.venues[0].city &&
     eventDetails._embedded.venues[0].city.name;
 
-  //we used the styles below to add a background image and a blur effect to a container on the page
-  const backgroundStyle = {
-    position: "relative",
-    backgroundImage: `url(${backgroundImageUrl})`,
-    backgroundSize: "cover",
-    backgroundRepeat: "no-repeat",
-    backgroundPosition: "-60px center",
-  };
+  const scheduledDate =
+    eventDetails._embedded &&
+    eventDetails._embedded.dates &&
+    eventDetails._embedded.dates.start &&
+    eventDetails._embedded.dates.start.localDate;
 
-  const overlayStyle = {
-    content: '""',
-    position: "absolute",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backdropFilter: "blur(10px)", // Adjust the blur intensity as needed
-  };
   const queryClient = useQueryClient();
   const { mutate } = useMutation({
     mutationFn: createFavorite,
@@ -76,90 +63,72 @@ export default function EventDetails() {
     onError: (err) => {
       console.log("Error object:", err); // Add this line
       if (err?.message === "DuplicateKeyError") {
-        toast.error("Item is already a favorite 😀", { autoClose: 2000 });
+        toast.info("Item is already a favorite 😀", { autoClose: 2000 });
       } else {
         toast.error("Something went wrong 😥", { autoClose: 2000 });
       }
     },
   });
   function handleAddToFavorites(eventDetails) {
-    const favoriteItem = {
-      user_id,
-      ticketing: eventDetails.url,
-      favoriteId: eventDetails.id,
-      eventName: eventDetails.name,
-      image: eventDetails.images?.[0]?.url,
-      date: eventDetails.dates?.start?.localDate,
-    };
-    mutate(favoriteItem);
+    if (!user_id && !user) {
+      open();
+    } else {
+      const favoriteItem = {
+        user_id,
+        ticketing: eventDetails.url,
+        favoriteId: eventDetails.id,
+        eventName: eventDetails.name,
+        image: eventDetails.images?.[0]?.url,
+        date: eventDetails.dates?.start?.localDate,
+      };
+      mutate(favoriteItem);
+    }
   }
 
-  console.log({ eventDetails });
+  function handleTicketPurchase(ticketUrl) {
+    window.open(ticketUrl, "_blank"); // Open the ticket URL in a new tab
+  }
 
   return (
-    <div className=" mx-auto max-w-[1003px] p-6">
-      <div style={backgroundStyle} className=" relative z-0 min-h-[390px] ">
-        <div style={overlayStyle}></div>
-
-        <div className="absolute inset-0   md:gap-[20px]">
-          <h2 className=" p-4 text-[24px] sm:p-6 sm:text-[28px] md:p-8 md:text-[36px] ">
-            {eventDetails.name}
-          </h2>
-          <div className="flex items-center justify-between px-6">
-            <div>
-              <div className="flex  gap-4">
-                <HiOutlineLocationMarker size={32} />
-                <div className="self-start">
-                  <p className="text-[24px] font-medium">
-                    {venueName ? venueName : "Venue info not available"}
-                  </p>
-                  <p>{addressLine1}</p>
-                  <p>{cityName}</p>
-                </div>
-              </div>
+    <div className=" mx-auto max-w-7xl p-6">
+      <div className="flex  gap-[48px]">
+        <img src={eventImage} alt={eventDetails.name} className="w-1/2" />
+        <div className="space-y-4 ">
+          <div className="flex justify-between">
+            <div></div>
+            <div className="flex cursor-pointer gap-1">
+              <MdOutlineNotificationsNone size={24} />
+              <MdFavoriteBorder
+                size={24}
+                onClick={() => handleAddToFavorites(eventDetails)}
+              />
             </div>
-            <div className="flex flex-col gap-2 ">
-              <div className="flex items-center gap-4">
-                <BiRadio size={32} stroke="200" />
-                <p className="text-[24px]">
-                  {eventDetails.dates?.start?.localDate &&
-                    formatDate(eventDetails.dates.start.localDate)}
-                </p>
-              </div>
-              <div className="ml-12 flex cursor-pointer items-center gap-2  rounded-2xl bg-white px-2 py-1 text-[#000]">
-                <MdOutlineNotificationsNone size={32} />
-                <p>Get Reminder</p>
-              </div>
-              <div className="ml-12 flex cursor-pointer items-center gap-2  rounded-2xl bg-white px-2 py-1 text-[#000]">
-                <MdFavoriteBorder
-                  size={32}
-                  onClick={(e) => handleAddToFavorites(eventDetails)}
-                />
-                <p>Add to Favorites</p>
-              </div>
+          </div>
+          <div className="self-center text-center">
+            <h2 className="font-semibold uppercase tracking-wide">
+              {eventDetails.name}
+            </h2>
+            <p className="space-x-1">
+              <span> {cityName}</span> ,<span>{countryCode}</span>
+            </p>
+            <p className="text-[16px]">
+              {scheduledDate ? formatDate(scheduledDate) : "N/A"}
+            </p>
+            <p className="text-[16px] font-medium">
+              {eventDetails.pleaseNote
+                ? eventDetails.pleaseNote
+                : "Event details not available 😢"}
+            </p>
+            <div className="mt-6">
+              <button
+                onClick={() => handleTicketPurchase(eventDetails.url)}
+                className="rounded-[50px] bg-primary px-3 py-2 uppercase tracking-wide transition-all duration-200 hover:bg-pink-200 hover:text-primary active:bg-pink-200 "
+              >
+                Buy Tickets
+              </button>
             </div>
-            <img
-              src={eventDetails.images?.[0]?.url}
-              alt="concert header"
-              className="h-[230px] w-[230px]"
-            />
           </div>
         </div>
-      </div>
-      <div className=" flex items-center gap-2 bg-white p-[28px] text-black">
-        <h3>Available tickets from </h3>
-        <a
-          href={eventDetails.url}
-          target="_blank"
-          rel="noreferrer"
-          className="inline-block rounded-md bg-[#0084cf] px-[10px] py-[5px] "
-        >
-          <img
-            src="https://fgfppclstifnqgadpqux.supabase.co/storage/v1/object/public/next-event-images/ticketmaster.png?t=2023-11-27T10%3A28%3A36.347Z"
-            alt="ticketmaster logo"
-            className="h-[20px] "
-          />
-        </a>
       </div>
     </div>
   );

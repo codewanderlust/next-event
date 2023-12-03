@@ -6,7 +6,12 @@ import { useNavigate } from "react-router";
 import { useEffect, useState } from "react";
 import { useUrlPosition } from "../../hooks/useUrlPosition";
 import { formatDate } from "../../utils/helpers";
+import { motion } from "framer-motion";
 
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+};
 const EventList = () => {
   const apiKey = "L9HuAjIoaLApydg4RShNzSl4kSv6mynE";
   const genre = "dancehall"; // Replace with the user's preferred genre
@@ -41,7 +46,7 @@ const EventList = () => {
 
     fetchEvents();
   }, [genre, apiKey, mapLat, mapLng]);
-  console.log({ events });
+
 
   function handleEventDetails(eventId) {
     navigate(`/event/${eventId}`);
@@ -56,11 +61,15 @@ const EventList = () => {
         Live Events
       </h1>
 
-      <div className="mb-2 inline-block cursor-pointer space-x-2 rounded-3xl border border-slate-200 px-4 py-2 sm:mb-4 md:mb-6">
-        <IoLocationOutline className="  inline-block text-[20px] " />
+      {events[0]?._embedded?.venues[0]?.city?.name && (
+        <div className="mb-2 inline-block cursor-pointer space-x-2 rounded-3xl border border-slate-200 px-4 py-2 sm:mb-4 md:mb-6">
+          <IoLocationOutline className="  inline-block text-[20px] " />
 
-        <p className="inline ">{events[0]?._embedded?.venues[0]?.city?.name}</p>
-      </div>
+          <p className="inline ">
+            {events[0]?._embedded?.venues[0]?.city?.name}
+          </p>
+        </div>
+      )}
 
       {loading ? (
         <SimpleGrid columns={{ sm: 2, md: 3 }} gap={6}>
@@ -89,9 +98,15 @@ const EventList = () => {
           ))}
         </SimpleGrid>
       ) : (
-        <div className="grid grid-cols-2 gap-2 sm:grid-cols-2 md:grid-cols-3 md:gap-4">
+        <motion.div
+          className="grid grid-cols-2 gap-2 sm:grid-cols-2 md:grid-cols-3 md:gap-4"
+          initial="hidden"
+          animate="visible"
+          variants={{ visible: { transition: { staggerChildren: 0.2 } } }}
+        >
           {events.map((event) => (
-            <div
+            <motion.div
+              variants={itemVariants}
               key={event.id}
               className="flex h-[400px] w-[350px] flex-col gap-2"
               to={`/concerts/${event.id}`}
@@ -127,9 +142,9 @@ const EventList = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       )}
     </Box>
   );

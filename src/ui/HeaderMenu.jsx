@@ -1,31 +1,38 @@
 import { CiSearch } from "react-icons/ci";
 import { GiLoveHowl } from "react-icons/gi";
-
+import { useNavigate } from "react-router";
 import { motion } from "framer-motion";
 import { useUser } from "../features/aunthentication/useUser";
 import UserAvatar from "../features/aunthentication/userAvatar";
-import { Link } from "react-router-dom";
 
 function HeaderLinks({ open }) {
+  const navigate = useNavigate();
   const { user } = useUser();
   const userId = user?.id;
-  console.log({ user });
 
-  const links = [
-    { href: "/", label: <CiSearch size={16} /> },
-    { href: "/favorites", label: <GiLoveHowl size={16} /> },
-  ];
-
+  function handleFavorites() {
+    if (user && userId) {
+      navigate("/favorites");
+    } else {
+      open();
+    }
+  }
   return (
     <>
       <ul className="flex items-center gap-[32px] text-lg tracking-wide">
-        {links.map((link, i) => (
-          <Link key={i} to="/favorites">
-            <p className="rounded-full bg-secondary p-2 font-bold capitalize text-[#f4f4f4]">
-              {link.label}
-            </p>
-          </Link>
-        ))}
+        <CiSearch
+          size={24}
+          color="#7908AE"
+          strokeWidth={1}
+          className="cursor-pointer"
+        />
+        <GiLoveHowl
+          size={24}
+          color="#7908AE"
+          strokeWidth={1}
+          onClick={handleFavorites}
+          className="cursor-pointer"
+        />
 
         {user && userId ? (
           <UserAvatar /> // Render the avatar if the user is logged in
