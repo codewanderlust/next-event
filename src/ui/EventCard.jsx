@@ -31,6 +31,7 @@ function EventCard() {
 
   useEffect(() => {
     controls.start({ x: 0, opacity: 1 });
+    //eslint-disable-next-line
   }, [events]);
 
   return (
