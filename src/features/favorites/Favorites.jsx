@@ -1,26 +1,40 @@
-import { useQuery } from "@tanstack/react-query";
 import { motion as m, useIsPresent } from "framer-motion";
 import { useDeleteFavorite } from "./useDeleteFavorite";
 import { getFavorites } from "../../services/apiFavorites";
 import { formatDate } from "../../utils/helpers";
 import { useUser } from "../aunthentication/useUser";
+import { useEffect, useState } from "react";
+import FavoritesSkeletonLoader from "./FavoritesSkeletonLoader";
 
 function Favorites() {
   const isPresent = useIsPresent();
+  const [favorites, setFavorites] = useState([]);
+  const [isLoading, setLoading] = useState(true);
   const { user } = useUser();
   const userId = user?.id;
-  const {
-    isLoading,
-    data: favorites,
-    // error,
-  } = useQuery({
-    queryKey: ["favorites", userId],
-    queryFn: () => getFavorites(userId), // pass a function to queryFn
-  });
+
+  useEffect(() => {
+    const fetchFavorites = async () => {
+      try {
+        setTimeout(async () => {
+          // Pass the apiKey, genre, and coordinates to the getNearbyEvents function
+          const favoritesData = await getFavorites(userId);
+          setFavorites(favoritesData);
+          setLoading(false); // Set loading to false after fetching data
+        }, 1000); // Simulate a 3-second delay
+      } catch (error) {
+        console.error("Error fetching favorites:", error);
+        setFavorites([]);
+        setLoading(false); // Set loading to false in case of an error
+      }
+    };
+
+    fetchFavorites();
+  }, [userId]);
 
   const { isDeleting, deleteFavorite } = useDeleteFavorite();
 
-  if (isLoading || isDeleting) return <p>Loading...</p>;
+  if (isLoading || isDeleting) return <FavoritesSkeletonLoader />;
   if (!favorites.length)
     return (
       <div className="mx-auto flex max-w-4xl items-center justify-center p-6">

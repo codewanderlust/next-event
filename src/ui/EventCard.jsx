@@ -1,16 +1,11 @@
 import { useState, useEffect } from "react";
-
+import { motion, useAnimation } from "framer-motion";
 import { Tooltip } from "@chakra-ui/react";
 import { FaLocationDot } from "react-icons/fa6";
-import { getTrendingEvents } from "../services/apiEvents";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
-import EventCardSkeleton from "../features/events/EventCardSkeleton";
 
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-};
+import { getTrendingEvents } from "../services/apiEvents";
+import EventCardSkeleton from "../features/events/EventCardSkeleton";
 
 function EventCard() {
   const [events, setEvents] = useState([]);
@@ -32,6 +27,11 @@ function EventCard() {
 
     fetchData();
   }, [query, apiKey]);
+  const controls = useAnimation();
+
+  useEffect(() => {
+    controls.start({ x: 0, opacity: 1 });
+  }, [events]);
 
   return (
     <div className="mt-4 sm:mt-8 md:mt-12">
@@ -42,16 +42,13 @@ function EventCard() {
       {loading ? (
         <EventCardSkeleton />
       ) : (
-        <motion.div
-          className="flex justify-center gap-4 px-4 py-3"
-          initial="hidden"
-          animate="visible"
-          variants={{ visible: { transition: { staggerChildren: 0.2 } } }}
-        >
+        <div className="flex justify-center gap-4 px-4 py-3">
           {events.map((event, i) => (
             <motion.div
               key={i}
-              variants={itemVariants}
+              initial={{ x: 300, opacity: 0 }}
+              animate={controls}
+              transition={{ duration: 0.75, delay: 0.3 }}
               className="overflow-hidden"
             >
               <Link
@@ -102,7 +99,7 @@ function EventCard() {
               </Link>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
       )}
     </div>
   );
