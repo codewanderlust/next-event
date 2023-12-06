@@ -58,15 +58,15 @@ const EventList = () => {
   return (
     <>
       <Box className="mx-auto max-w-7xl p-6">
-        <h1 className="mb-4 text-[20px] sm:mb-6 sm:text-[30px] md:mb-8 md:text-[40px]">
+        <h1 className="mb-4 text-sm sm:mb-6 sm:text-lg md:mb-8 ">
           Live Events
         </h1>
 
         {events[0]?._embedded?.venues[0]?.city?.name && (
-          <div className="mb-2 inline-block cursor-pointer space-x-2 rounded-3xl border border-slate-200 px-4 py-2 sm:mb-4 md:mb-6">
-            <IoLocationOutline className="  inline-block text-[20px] " />
+          <div className="mb-2 inline-block cursor-pointer space-x-1 rounded-3xl border border-slate-200 px-2 py-1 sm:mb-4 sm:space-x-2 sm:px-4 sm:py-2 md:mb-6">
+            <IoLocationOutline className="  inline-block text-sm sm:text-lg " />
 
-            <p className="inline ">
+            <p className="inline text-sm sm:text-lg ">
               {events[0]?._embedded?.venues[0]?.city?.name}
             </p>
           </div>
@@ -100,51 +100,54 @@ const EventList = () => {
           </SimpleGrid>
         ) : (
           <motion.div
-            className="grid grid-cols-2 gap-2 sm:grid-cols-2 md:grid-cols-3 md:gap-4"
             initial="hidden"
             animate="visible"
             variants={{ visible: { transition: { staggerChildren: 0.2 } } }}
           >
-            {events.map((event) => (
-              <motion.div
-                variants={itemVariants}
-                key={event.id}
-                className="flex h-[400px] w-[350px] flex-col gap-2"
-                to={`/concerts/${event.id}`}
-              >
-                <div className="h-[60%] overflow-hidden">
-                  <img
-                    src={event.images[2].url}
-                    alt={event.name}
-                    className="h-full w-full object-cover"
-                  />
-                </div>
-                <div className="flex h-[40%] flex-col justify-between">
-                  <div className="space-y-4 text-center text-xs">
-                    <p className="truncate text-[20px] ">{event.name}</p>
-                    <p className="text-[16px]">
-                      {event._embedded?.venues[0]?.city?.name || "N/A"} ┃{" "}
-                      {formatDate(event.dates?.start?.localDate)}
-                    </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+              {events.map((event) => (
+                <motion.div
+                  variants={itemVariants}
+                  key={event.id}
+                  className="flex h-[350px] w-[300px] flex-col gap-2 sm:h-[400px] sm:w-[350px]"
+                  to={`/concerts/${event.id}`}
+                >
+                  <div className="h-[60%] overflow-hidden">
+                    <img
+                      src={event.images[2].url}
+                      alt={event.name}
+                      className="h-full w-full object-cover"
+                    />
+                  </div>
+                  <div className="flex h-[40%] flex-col justify-between">
+                    <div className="space-y-4 text-center text-xs">
+                      <p className="truncate text-[16px] sm:text-[20px]">
+                        {event.name}
+                      </p>
+                      <p className="text-[16px] text-sm">
+                        {event._embedded?.venues[0]?.city?.name || "N/A"} ┃{" "}
+                        {formatDate(event.dates?.start?.localDate)}
+                      </p>
 
-                    <div className="space-x-4 text-[16px] font-semibold ">
-                      <button
-                        onClick={() => handleEventDetails(event.id)}
-                        className="rounded-[50px] border-2 border-primary px-3 py-2 uppercase tracking-wide text-primary transition-all duration-200 hover:bg-pink-200 hover:text-primary active:bg-pink-200 active:text-primary"
-                      >
-                        Details
-                      </button>
-                      <button
-                        onClick={() => handleTicketPurchase(event.url)}
-                        className="rounded-[50px] bg-primary px-3 py-2 uppercase tracking-wide transition-all duration-200 hover:bg-pink-200 hover:text-primary active:bg-pink-200 "
-                      >
-                        Buy Tickets
-                      </button>
+                      <div className="space-x-4 text-[16px] font-semibold ">
+                        <button
+                          onClick={() => handleEventDetails(event.id)}
+                          className=" rounded-[50px] border-2 border-primary px-2 py-1 text-sm uppercase tracking-wide text-primary transition-all duration-200 hover:bg-pink-200 hover:text-primary active:bg-pink-200 active:text-primary sm:px-3 sm:py-2 sm:text-lg"
+                        >
+                          Details
+                        </button>
+                        <button
+                          onClick={() => handleTicketPurchase(event.url)}
+                          className="rounded-[50px] bg-primary px-2 py-1 text-sm uppercase tracking-wide transition-all duration-200 hover:bg-pink-200 hover:text-primary active:bg-pink-200 sm:px-3 sm:py-2 sm:text-lg "
+                        >
+                          Buy Tickets
+                        </button>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </motion.div>
-            ))}
+                </motion.div>
+              ))}
+            </div>
           </motion.div>
         )}
       </Box>

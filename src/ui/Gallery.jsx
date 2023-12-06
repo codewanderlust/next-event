@@ -9,7 +9,7 @@ function Gallery() {
 
   return (
     <motion.div
-      className="mt-4 grid grid-cols-2 sm:mt-8  md:mt-12 "
+      className="mt-4 grid grid-cols-1 sm:mt-8 sm:grid-cols-2  md:mt-12  "
       initial={false}
       animate={
         isLoaded && isInView
@@ -23,13 +23,13 @@ function Gallery() {
       <img
         src="https://fgfppclstifnqgadpqux.supabase.co/storage/v1/object/public/next-event-images/gallery-image-01.jpg?t=2023-11-27T10%3A30%3A41.988Z"
         alt="people seated in a concert"
-        className="h-[400px] w-full rounded-bl-2xl rounded-tl-[100px] object-cover"
+        className="h-[200px] w-full rounded-bl-lg rounded-tl-[50px] object-cover sm:h-[300px] sm:rounded-bl-xl sm:rounded-tl-[80px] md:h-[400px] md:rounded-bl-2xl md:rounded-tl-[100px] "
         onLoad={() => setIsLoaded(true)}
       />
       <img
         src="https://fgfppclstifnqgadpqux.supabase.co/storage/v1/object/public/next-event-images/gallery-image-02.jpg"
         alt="people seated in a concert"
-        className="h-[400px] w-full rounded-br-[100px] rounded-tr-2xl object-cover"
+        className="sm h-[200px] w-full rounded-br-[50px] rounded-tr-lg object-cover sm:h-[300px] sm:rounded-br-[80px] sm:rounded-tr-xl md:h-[400px] md:rounded-br-[100px] md:rounded-tr-2xl"
         onLoad={() => setIsLoaded(true)}
       />
     </motion.div>

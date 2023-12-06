@@ -108,8 +108,12 @@ export default function EventDetails() {
         {loading ? (
           <EventDetailsSkeleton />
         ) : (
-          <div className="flex  gap-[48px]">
-            <img src={eventImage} alt={eventDetails.name} className="w-1/2" />
+          <div className="flex flex-col gap-[36px]  sm:flex-row sm:gap-[48px]">
+            <img
+              src={eventImage}
+              alt={eventDetails.name}
+              className="sm:w-1/2"
+            />
             <div className="space-y-4 ">
               <div className="flex justify-between">
                 <div></div>

@@ -65,7 +65,7 @@ function EventTypeCards() {
             <Link to="/concerts" className="oveflow-hidden block">
               <img src={ev.image} alt="hero banner" />
               <div className="z-2 absolute inset-0 flex flex-col items-start justify-start gap-1 p-4 text-[#f4f4f4]">
-                <h1 className="text-3xl font-medium capitalize tracking-wide">
+                <h1 className="text-xl font-medium capitalize tracking-wide sm:text-2xl md:text-3xl">
                   {ev.name}
                 </h1>
               </div>

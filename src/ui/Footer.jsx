@@ -4,7 +4,7 @@ export default function Footer() {
   return (
     <footer
       id="Footer"
-      className="  mt-20  border-t border-t-black bg-secondary px-2"
+      className="  mt-4 border-t border-t-black bg-secondary px-2 sm:mt-8 md:mt-12"
     >
       <div className="min-w-6xl mx-auto flex max-w-6xl flex-col  p-4 sm:flex-row  sm:justify-between sm:px-4 sm:py-10">
         <ul className="mb-8 w-full sm:mb-0 sm:w-1/3">

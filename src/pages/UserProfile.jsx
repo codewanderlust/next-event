@@ -23,10 +23,10 @@ export default function UserProfile() {
     <>
       <div className="ml-auto mr-auto max-w-[1536px] pl-[0.75rem] pr-[0.75rem]">
         <div className="mx-auto mt-8 flex max-w-3xl flex-col gap-6">
-          <p className="text-xl ">
+          <p className="text-sm sm:text-xl ">
             User ID: <span className="font-bold">{user?.id}</span>
           </p>
-          <p className="text-xl ">
+          <p className="text-sm sm:text-xl ">
             Account Email: <span className="font-bold">{user?.email}</span>
           </p>
           <button
@@ -37,15 +37,15 @@ export default function UserProfile() {
             {isLoading ? <Spinner size="sm" color="white" /> : "Sign Out"}
           </button>
 
-          <h2 className="mt-8 text-center text-5xl font-bold uppercase">
+          <h2 className="mt-8 text-center text-xl font-bold uppercase sm:text-3xl md:text-5xl">
             Get in Touch
           </h2>
-          <div className="mx-auto my-12 h-1 w-24 rounded-full bg-gradient-to-r from-orange-600 to-orange-400"></div>
-          <p>
+          <div className="mx-auto my-4 h-1 w-24 rounded-full bg-gradient-to-r from-orange-600 to-orange-400 sm:my-8 md:my-12"></div>
+          <p className="text-sm sm:text-lg">
             Need help with your account? Reach via your favorite channel and
             we'll respond in 24 hours or less.
           </p>
-          <ul>
+          <ul className="text-sm sm:text-lg">
             <li>• Email hello@nextevent.io</li>
             <li>
               • DM via Twitter{" "}
@@ -59,10 +59,12 @@ export default function UserProfile() {
               </a>
             </li>
           </ul>
-          <h2 className="mt-8 text-center text-5xl uppercase">Danger Zone</h2>
+          <h2 className="mt-8 text-center text-xl font-bold uppercase sm:text-3xl md:text-5xl">
+            Danger Zone
+          </h2>
 
-          <div className="mx-auto my-12 h-1 w-24 rounded-full bg-gradient-to-r from-orange-600 to-orange-400"></div>
-          <p>
+          <div className="mx-auto my-4 h-1 w-24 rounded-full bg-gradient-to-r from-orange-600 to-orange-400 sm:my-8 md:my-12"></div>
+          <p className="text-sm sm:text-lg">
             Use this button to delete your account and wipe all data from our
             servers forever.
           </p>

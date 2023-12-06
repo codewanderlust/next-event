@@ -35,15 +35,15 @@ function EventCard() {
   }, [events]);
 
   return (
-    <div className="mt-4 sm:mt-8 md:mt-12">
-      <h2 className="neon mb-2 text-center text-5xl font-bold">
+    <div className="mx-auto mt-4 sm:mt-8 sm:max-w-7xl md:mt-12">
+      <h2 className="neon mb-2 text-center text-xl font-bold sm:text-3xl md:text-5xl">
         TRENDING EVENTS
       </h2>
 
       {loading ? (
         <EventCardSkeleton />
       ) : (
-        <div className="flex justify-center gap-4 px-4 py-3">
+        <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
           {events.map((event, i) => (
             <motion.div
               key={i}
@@ -53,7 +53,7 @@ function EventCard() {
               className="overflow-hidden"
             >
               <Link
-                className="relative flex h-[400px] w-[400px]  flex-col rounded-md border border-stone-800"
+                className="relative flex w-[300px] flex-col rounded-md border border-stone-800 sm:h-[400px] sm:w-[400px]"
                 to={`/event/${event.id}`}
               >
                 {i === 1 && (

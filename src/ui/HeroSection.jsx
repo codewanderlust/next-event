@@ -37,24 +37,24 @@ function HeroSection() {
         <img
           src="https://fgfppclstifnqgadpqux.supabase.co/storage/v1/object/public/next-event-images/hero-image.jpg"
           alt="hero banner"
-          className="z-1 h-[700px] w-full  object-cover "
+          className="z-1  h-[400px] w-full object-cover sm:h-[500px]  md:h-[700px] "
         />
 
         <div className="z-2 absolute  inset-0 flex flex-col items-start justify-start gap-1 px-12 pt-4 text-[#f4f4f4]">
           {/* Top bar */}
-          <div className="h-10 w-1/2 bg-white"></div>
+          <div className="h-4 w-1/2 bg-white sm:h-6 md:h-8 lg:h-10"></div>
 
           <m.h1
             animate={{ y: 0, opacity: 1 }}
             initial={{ y: "100%", opacity: 0 }}
             transition={{ delay: 0.5, duration: 0.5 }}
-            className="text-9xl font-medium uppercase tracking-wide"
+            className="text-3xl  font-medium uppercase tracking-wide sm:text-5xl md:text-7xl lg:text-9xl"
           >
             Feed the soul
           </m.h1>
 
           {/* Bottom bar */}
-          <div className="h-10 w-1/2 self-end bg-white"></div>
+          <div className="h-4 w-1/2 self-end bg-white sm:h-6 md:h-8 lg:h-10"></div>
         </div>
 
         <div className="z-2 absolute bottom-20 left-0 right-0 top-0  flex flex-col items-start justify-end gap-6  px-12 text-[#f4f4f4]">

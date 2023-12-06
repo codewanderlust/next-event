@@ -1,8 +1,8 @@
 function AppFeatures() {
   return (
-    <div className="mt-20 grid grid-cols-2 justify-center gap-4 px-3  py-4">
-      <div className="flex flex-col  gap-2 md:w-[1/2]">
-        <div className="mb-2 self-start rounded-xl bg-primary px-2 py-4 font-medium capitalize">
+    <div className="mt-4 grid grid-cols-1 justify-center gap-4 px-3 py-4 sm:mt-8 sm:grid-cols-2  md:mt-12">
+      <div className="flex flex-col  gap-2 text-sm sm:text-lg md:w-[1/2]">
+        <div className="mb-2 self-start rounded-xl bg-primary px-1 py-2 font-medium capitalize sm:px-2 sm:py-4">
           <h2>Unlocked Personalized Event Discovery</h2>
         </div>
         <p>
@@ -53,15 +53,15 @@ function AppFeatures() {
         </ul>
       </div>
 
-      <div className="flex items-end justify-end gap-2">
-        <div className="h-20 w-8 bg-primary"></div>
-        <div className="h-[100px] w-8 bg-secondary"></div>
-        <div className="h-[160px] w-8 bg-tertiary"></div>
-        <div className="h-[220px] w-8 bg-primary"></div>
-        <div className="h-[280px] w-8 bg-secondary"></div>
-        <div className="h-[380px] w-8 bg-tertiary"></div>
-        <div className="h-[480px] w-8 bg-primary"></div>
-        <div className="h-[580px] w-8 bg-secondary"></div>
+      <div className="flex items-end gap-2 sm:justify-end">
+        <div className="h-[60px] w-6 bg-primary sm:h-20 sm:w-8"></div>
+        <div className="h-[80px] w-6 bg-secondary sm:h-[100px] sm:w-8"></div>
+        <div className="h-[120px] w-6 bg-tertiary sm:h-[160px] sm:w-8"></div>
+        <div className="h-[160px] w-6 bg-primary sm:h-[220px] sm:w-8"></div>
+        <div className="h-[200px] w-6 bg-secondary sm:h-[280px] sm:w-8"></div>
+        <div className="h-[240px] w-6 bg-tertiary sm:h-[380px] sm:w-8"></div>
+        <div className="h-[300px] w-6 bg-primary sm:h-[480px] sm:w-8"></div>
+        <div className="h-[360px] w-6 bg-secondary sm:h-[580px] sm:w-8"></div>
       </div>
     </div>
   );
