@@ -65,7 +65,7 @@ const Modal = ({ handleClose, type }) => {
       {type === "dropIn" && (
         <motion.div
           onClick={(e) => e.stopPropagation()} // Prevent click from closing modal
-          className="modal gray-gradient"
+          className="modal"
           variants={dropIn}
           initial="hidden"
           animate="visible"
@@ -97,11 +97,15 @@ const ModalText = ({
   magicLinkSent,
 }) => (
   <div className="modal-text flex flex-col gap-2">
-    <h2 className="text-[2rem] font-[700] capitalize tracking-[1px]">{text}</h2>
-    <h3>With magic email link:</h3>
+    <h2 className="text-[2rem] font-[700] capitalize tracking-[1px] text-slate-100">
+      {text}
+    </h2>
+    <h3 className="font-semibold text-slate-200">With magic email link:</h3>
     <div className="space-y-4">
       <div>
-        <p className="block text-sm font-medium leading-6 ">Email</p>
+        <p className="block text-[14px] font-semibold leading-6 text-slate-200 ">
+          Email
+        </p>
         <div className="mt-2">
           <input
             id="email"
@@ -109,7 +113,7 @@ const ModalText = ({
             type="email"
             autoComplete="email"
             required
-            className={`input ${isEmailValid ? "valid-email" : "touched"}`}
+            className={`input  ${isEmailValid ? "valid-email" : "touched"}`}
             onChange={(e) => setEmail(e.target.value)}
             value={email}
           />
@@ -134,7 +138,7 @@ const ModalText = ({
       </div>
     </div>
 
-    <p>Or with account:</p>
+    <p className="font-semibold text-slate-200">Or with account:</p>
     <Auth
       onlyThirdPartyProviders
       supabaseClient={supabase}

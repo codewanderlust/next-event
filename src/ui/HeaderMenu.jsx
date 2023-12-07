@@ -17,6 +17,7 @@ function HeaderLinks({ open }) {
       open();
     }
   }
+
   return (
     <>
       <ul className="flex items-center gap-[32px] text-lg tracking-wide">
@@ -40,7 +41,9 @@ function HeaderLinks({ open }) {
           <motion.button
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
-            onClick={open}
+            onClick={() => {
+              open();
+            }}
             className="cursor-pointer rounded-2xl bg-secondary px-3 py-1  text-[16px] font-semibold text-[#f4f4f4]"
           >
             Login

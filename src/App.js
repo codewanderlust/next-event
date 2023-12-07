@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { BrowserRouter } from "react-router-dom";
 import { ChakraProvider } from "@chakra-ui/react";
 import { Toaster } from "react-hot-toast";
@@ -5,6 +6,10 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import LocationProvider from "./components/PageTransitions/LocationProvider";
 import RoutesWithAnimation from "./components/PageTransitions/RouteWithAnimation";
+import { useModal } from "./hooks/useModal";
+import Modal from "./components/Modal";
+import { AnimatePresence } from "framer-motion";
+import { framerLogger } from "./utils/stateLogger";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -15,13 +20,27 @@ const queryClient = new QueryClient({
 });
 
 function App() {
+  const { modalOpen, close, open } = useModal();
+  const [modalType] = useState("dropIn");
+
   return (
     <QueryClientProvider client={queryClient}>
       <ChakraProvider>
         <BrowserRouter>
           <LocationProvider>
-            <RoutesWithAnimation />
+            <RoutesWithAnimation open={open} />
           </LocationProvider>
+
+          <ModalContainer>
+            {modalOpen && (
+              <Modal
+                modalOpen={modalOpen}
+                text={modalType}
+                type={modalType}
+                handleClose={close}
+              />
+            )}
+          </ModalContainer>
         </BrowserRouter>
         <Toaster
           position="bottom-right"
@@ -65,5 +84,22 @@ function App() {
     </QueryClientProvider>
   );
 }
+
+const ModalContainer = ({ children, label }) => (
+  // Enables the animation of components that have been removed from the tree
+  <AnimatePresence
+    // Disable any initial animations on children that
+    // are present when the component is first rendered
+    initial={false}
+    // Only render one component at a time.
+    // The exiting component will finish its exit
+    // animation before entering component is rendered
+    mode="wait"
+    // Fires when all exiting nodes have completed animating out
+    onExitComplete={() => framerLogger(label)}
+  >
+    {children}
+  </AnimatePresence>
+);
 
 export default App;

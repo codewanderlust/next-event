@@ -58,7 +58,7 @@ const EventList = () => {
   return (
     <>
       <Box className="mx-auto max-w-7xl p-6">
-        <h1 className="mb-4 text-sm sm:mb-6 sm:text-lg md:mb-8 ">
+        <h1 className="mb-4 text-sm sm:mb-6 sm:text-xl md:mb-8 ">
           Live Events
         </h1>
 
@@ -132,13 +132,13 @@ const EventList = () => {
                       <div className="space-x-4 text-[16px] font-semibold ">
                         <button
                           onClick={() => handleEventDetails(event.id)}
-                          className=" rounded-[50px] border-2 border-primary px-2 py-1 text-sm uppercase tracking-wide text-primary transition-all duration-200 hover:bg-pink-200 hover:text-primary active:bg-pink-200 active:text-primary sm:px-3 sm:py-2 sm:text-lg"
+                          className=" rounded-[50px] border-2 border-primary px-2 py-1 text-sm uppercase tracking-wide text-primary transition-all duration-200 hover:bg-pink-200 hover:text-primary active:bg-pink-200 active:text-primary "
                         >
                           Details
                         </button>
                         <button
                           onClick={() => handleTicketPurchase(event.url)}
-                          className="rounded-[50px] bg-primary px-2 py-1 text-sm uppercase tracking-wide transition-all duration-200 hover:bg-pink-200 hover:text-primary active:bg-pink-200 sm:px-3 sm:py-2 sm:text-lg "
+                          className="rounded-[50px] bg-primary px-2 py-1 text-sm uppercase tracking-wide transition-all duration-200 hover:bg-pink-200 hover:text-primary active:bg-pink-200   "
                         >
                           Buy Tickets
                         </button>

@@ -210,11 +210,10 @@
     padding-right: 2rem;
     padding-top: 3rem;
     padding-bottom: 3rem;
-  }
-
-  .gray-gradient {
+    --tw-bg-opacity: 1;
     background-color: rgb(42 46 53 / var(--tw-bg-opacity));
   }
+
   .esc {
     position: absolute;
     top: 1.5rem;

@@ -10,16 +10,15 @@ import { formatDate } from "../../utils/helpers";
 import { MdOutlineNotificationsNone, MdFavoriteBorder } from "react-icons/md";
 import { createFavorite } from "../../services/apiFavorites";
 import { useUser } from "../aunthentication/useUser";
-import { useModal } from "../../hooks/useModal";
+
 import EventDetailsSkeleton from "./EventDetailsSkeleton";
 
-export default function EventDetails() {
+export default function EventDetails({ open }) {
   const isPresent = useIsPresent();
   const [eventDetails, setEventDetails] = useState({});
   const [loading, setLoading] = useState(true);
   const apiKey = "L9HuAjIoaLApydg4RShNzSl4kSv6mynE";
   const { id } = useParams();
-  const { open } = useModal();
 
   const { user } = useUser();
   const user_id = user?.id;
