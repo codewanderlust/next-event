@@ -19,7 +19,7 @@ export default function RoutesWithAnimation({ open }) {
       <Routes location={location} key={location.key}>
         <Route element={<AppLayout />}>
           <Route path="/favorites" element={<Favorites />} />
-          <Route path="/dashboard" element={<UserProfile />} />
+          <Route path="/dashboard" element={<UserProfile open={open} />} />
           <Route index element={<HomePage />} />
           <Route path="/events" element={<EventList />} />
           <Route path="/event/:id" element={<EventDetails open={open} />} />

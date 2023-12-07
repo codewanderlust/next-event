@@ -6,15 +6,14 @@ export function useLogout() {
   const { mutate: logout, isLoading } = useMutation({
     mutationFn: logoutApi,
     onSuccess: () => {
-      queryClient.removeQueries();
+      queryClient.removeQueries("user"); // Invalidate user-related queries
+      queryClient.setQueryData("user", null); // Reset user data in the cache
+      // Optionally redirect user to home page or login
     },
-
     onError: (error) => {
       console.error("Logout failed", error);
-      // Handle error states, update UI, or show error messages
     },
   });
+
   return { logout, isLoading };
 }
-
-export default useLogout;
