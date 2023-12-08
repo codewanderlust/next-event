@@ -37,5 +37,18 @@ const getTrendingEvents = async (apiKey, query) => {
   }
 };
 
-export { getNearbyEvents, getEventDetails, getTrendingEvents };
+const getEventsByCity = async (apiKey, city) => {
+  try {
+    const response = await fetch(
+      `https://app.ticketmaster.com/discovery/v2/events.json?apikey=${apiKey}&keyword=${city}`,
+    );
+    const data = await response.json();
+    return data._embedded?.events || [];
+  } catch (error) {
+    console.error("Error fetching events by city:", error);
+    return [];
+  }
+};
+
+export { getNearbyEvents, getEventDetails, getTrendingEvents, getEventsByCity };
 // https://app.ticketmaster.com/discovery/v2/events.json?latlong=37.7749,-122.4194&apikey=YOUR_API_KEY

@@ -101,6 +101,14 @@ export default function EventDetails({ open }) {
     window.open(ticketUrl, "_blank"); // Open the ticket URL in a new tab
   }
 
+  function handlePushNotifications() {
+    if (user_id && user) {
+      console.log("Push notifications");
+    } else {
+      open();
+    }
+  }
+
   return (
     <>
       <div className=" mx-auto max-w-7xl p-6">
@@ -113,11 +121,14 @@ export default function EventDetails({ open }) {
               alt={eventDetails.name}
               className="sm:w-1/2"
             />
-            <div className="space-y-4 ">
+            <div className="space-y-4 sm:w-1/2 ">
               <div className="flex justify-between">
                 <div></div>
                 <div className="flex cursor-pointer gap-1">
-                  <MdOutlineNotificationsNone size={24} />
+                  <MdOutlineNotificationsNone
+                    size={24}
+                    onClick={handlePushNotifications}
+                  />
                   <MdFavoriteBorder
                     size={24}
                     onClick={() => handleAddToFavorites(eventDetails)}
@@ -129,7 +140,7 @@ export default function EventDetails({ open }) {
                   {eventDetails.name}
                 </h2>
                 <p className="space-x-1">
-                  <span> {cityName}</span> ,<span>{countryCode}</span>
+                  <span> {cityName}</span>,<span>{countryCode}</span>
                 </p>
                 <p className="text-[16px]">
                   {scheduledDate ? formatDate(scheduledDate) : "N/A"}
