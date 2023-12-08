@@ -3,6 +3,7 @@ import { GiLoveHowl } from "react-icons/gi";
 import { useNavigate } from "react-router";
 import { motion } from "framer-motion";
 import { BiLoaderCircle } from "react-icons/bi";
+import { IoEnterOutline } from "react-icons/io5";
 import {
   Modal,
   ModalOverlay,
@@ -11,13 +12,12 @@ import {
   ModalBody,
   useDisclosure,
 } from "@chakra-ui/react";
+import debounce from "debounce";
 
 import { useUser } from "../features/aunthentication/useUser";
 import UserAvatar from "../features/aunthentication/userAvatar";
 import SearchBar from "./SearchBar";
-import debounce from "debounce";
 import { getEventsByCity } from "../services/apiEvents";
-import { Link } from "react-router-dom";
 
 function HeaderLinks({ open }) {
   const apiKey = "L9HuAjIoaLApydg4RShNzSl4kSv6mynE";
@@ -116,7 +116,7 @@ function HeaderLinks({ open }) {
             <ModalBody className=" overflow-y-scroll">
               <form className="relative">
                 <input
-                  className="input "
+                  className="input text-sm sm:text-lg "
                   name="Search"
                   type="text"
                   placeholder="search event by city"
@@ -148,7 +148,9 @@ function HeaderLinks({ open }) {
                         activeIndex === i ? "active" : ""
                       }`}
                     >
-                      <h2 className="hit-title">{item.name}</h2>
+                      <h2 className="hit-title text-sm sm:text-lg">
+                        {item.name}
+                      </h2>
                     </div>
                   </div>
                 ))
@@ -180,16 +182,27 @@ function HeaderLinks({ open }) {
         {user && userId ? (
           <UserAvatar /> // Render the avatar if the user is logged in
         ) : (
-          <motion.button
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            onClick={() => {
-              open();
-            }}
-            className="cursor-pointer rounded-2xl bg-secondary px-3 py-1  text-[16px] font-semibold text-[#f4f4f4]"
-          >
-            Login
-          </motion.button>
+          <>
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              onClick={() => {
+                open();
+              }}
+              className="hidden cursor-pointer rounded-2xl bg-secondary px-3 py-1 text-[16px]  font-semibold text-[#f4f4f4] sm:block"
+            >
+              Login
+            </motion.button>
+            <IoEnterOutline
+              className="cursor-pointer sm:hidden"
+              size={24}
+              strokeWidth={1}
+              color="#7908AE"
+              onClick={() => {
+                open();
+              }}
+            />
+          </>
         )}
       </ul>
     </>
