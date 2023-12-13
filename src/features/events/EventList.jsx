@@ -131,6 +131,7 @@ const EventList = () => {
 
                       <div className="space-x-4 text-[16px] font-semibold ">
                         <button
+                          data-testid="event-details-btn"
                           onClick={() => handleEventDetails(event.id)}
                           className=" rounded-[50px] border-2 border-primary px-2 py-1 text-sm uppercase tracking-wide text-primary transition-all duration-200 hover:bg-pink-200 hover:text-primary active:bg-pink-200 active:text-primary "
                         >

@@ -70,6 +70,7 @@ function HeroSection() {
 
           {!geolocationPosition && (
             <m.button
+              data-testid="get-started-btn"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               initial={{ y: "100%", opacity: 0 }}
