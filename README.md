@@ -28,7 +28,7 @@ NextEvent is an application that uses personalized data from Spotify to recommen
   out the documentation [here](https://developer.ticketmaster.com/products-and-docs/apis/getting-started/)
 - Next, I set up the backend which involved creating a project in Supabase and creating relevant tables that would be used for this small project.
 - Then I focused on the other remaining smaller details such as developing the other relevant pages that would be used. Setting up tests to see if the application worked as expected and also setting up Oauth sign-in to assist with authentication of users.
-- The most challenging part was trying to find an API that fits perfectly for this project. Most of the available APIs focused on the US and Western Europe markets and hence were not suitable for this project. In the future, instead of using the Discovery API, I will try to come up with some faker data to help finalize some of the remaining functionalities.
+- The most challenging part was trying to find an API that fits perfectly for this project. Most of the available APIs focused on the US and Western Europe markets and hence were not suitable for this project. In the future, instead of using the Discovery API, I will try to come up with some fake data to help finalize some of the remaining functionalities.
 
 ### 🤔 How can It be Improved
 
@@ -37,7 +37,7 @@ NextEvent is an application that uses personalized data from Spotify to recommen
 - The application is supposed to send a notification to users about upcoming events. I intend to read more on how this can be done and then implement it.
 
 ### 🐛 Current Bug
-Currently, I'm working on fixing a sign-in bug that prevents users from logging in. This should be done before the end of the day.
+At the moment, there are two bugs that I know of. One is when a user logs out the placeholder profile image isn't removed immediately and the second is that it takes a few seconds for a favorite to be deleted which in turn leads to the error notification being displayed
 
 <details>
 <summary><h3> 🎥 - Demo Video </h3></summary>
