@@ -41,8 +41,7 @@ Currently, I'm working on fixing a sign-in bug that prevents users from logging 
 
 <details>
 <summary><h3> 🎥 - Demo Video </h3></summary>
-  
-https://github.com/RoyJumah/next-event/assets/61903079/2a5fedfc-b63b-457f-b5e8-9a55e895bb5a
+ <video src="https://github.com/RoyJumah/next-event/assets/61903079/2a5fedfc-b63b-457f-b5e8-9a55e895bb5a" controls="controls" style="max-width: 730px;"> 
 </details>
 
 
