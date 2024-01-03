@@ -53,6 +53,8 @@ At the moment, there are two bugs that I know of. One is when a user logs out th
 <img src="https://github.com/RoyJumah/next-event/assets/61903079/81111971-7457-4291-979d-966dd1752b0b"/>
 <img src="https://github.com/RoyJumah/next-event/assets/61903079/fb1fab89-77d2-4a6c-80ed-fb99cf7b4c6e"/>
 <img src="https://github.com/RoyJumah/next-event/assets/61903079/c479ffae-f29a-4402-bd22-cbc8e9841a0a"/>
+<img src="https://github.com/RoyJumah/next-event/assets/61903079/25a060ef-98f0-4ccd-af3f-870ba492adb6"/>
+<img src="https://github.com/RoyJumah/next-event/assets/61903079/eb327c7f-2c1e-4a5f-baf2-441fd3c95ba5"/>
 </details>
 
 
