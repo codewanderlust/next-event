@@ -1,70 +1,61 @@
-# Getting Started with Create React App
+# 🕺🏿 NextEvent- Event Recommendation App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+NextEvent is an application that uses personalized data from Spotify to recommend nearby events to users. The frontend was handled by React and Tailwind while Supabase handled the backend and authentication. This app works both on large screens and mobile devices.
 
-## Available Scripts
+## 🚀 Features
 
-In the project directory, you can run:
+- 🗝 Sign in with Google and Github (OAuth 2.0 authentication)
+- 🧑🏿 View your own profile, email, name, id, etc.
+- ♥  Add a favorite event.
+- 🎫 Book tickets to an event.
+- 📈 View trending events in your area.
+- 🔍 Search for events worldwide
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### 🛠 Main Technologies
+- `React`
+- `Tailwind`
+- `JavaScript`
+- `Jest`
+- `Supabase`
 
-### `npm test`
+### 📝 Process
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- I began by listing down what features the application would have.
+- Secondly, using Figma, I came up with the design for the landing page.
+- Then I moved on to looking for a suitable API that I could use to help me get details about events. I landed on the Discovery API that uses data from sources such as TicketMaster to come up with events. You can check 
+  out the documentation [here](https://developer.ticketmaster.com/products-and-docs/apis/getting-started/)
+- Next, I set up the backend which involved creating a project in Supabase and creating relevant tables that would be used for this small project.
+- Then I focused on the other remaining smaller details such as developing the other relevant pages that would be used. Setting up tests to see if the application worked as expected and also setting up Oauth sign-in to assist with authentication of users.
+- The most challenging part was trying to find an API that fits perfectly for this project. Most of the available APIs focused on the US and Western Europe markets and hence were not suitable for this project. In the future, instead of using the Discovery API, I will try to come up with some faker data to help finalize some of the remaining functionalities.
 
-### `npm run build`
+### 🤔 How can It be Improved
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- It would be amazing if the first screen that the users encounter is a page that allows users to choose their best musicians and genres that will help in displaying only events that are related to their preferred choices.
+- Although I added some tests, the application has still not yet been tested thoroughly and I plan to do this in the future.
+- The application is supposed to send a notification to users about upcoming events. I intend to read more on how this can be done and then implement it.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 🐛 Current Bug
+Currently, I'm working on fixing a sign-in bug that prevents users from logging in. This should be done before the end of the day.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<details>
+<summary><h3> 🎥 - Demo Video </h3></summary>
+ <video src="https://github.com/RoyJumah/next-event/assets/61903079/2a5fedfc-b63b-457f-b5e8-9a55e895bb5a" controls="controls" style="max-width: 730px;"> 
+</details>
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+<details>
+<summary><h3> 📸 - Demo Images </h3></summary>
+<img src ="https://github.com/RoyJumah/next-event/assets/61903079/b4047cf2-f501-4029-a8c9-bf7853401733"/>
+<img src="https://github.com/RoyJumah/next-event/assets/61903079/81111971-7457-4291-979d-966dd1752b0b"/>
+<img src="https://github.com/RoyJumah/next-event/assets/61903079/fb1fab89-77d2-4a6c-80ed-fb99cf7b4c6e"/>
+<img src="https://github.com/RoyJumah/next-event/assets/61903079/c479ffae-f29a-4402-bd22-cbc8e9841a0a"/>
+</details>
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
